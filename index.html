@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Que Horas É a Missa?</title>
+</head>
+
+<body>
+    <header>
+        <h1>Que Horas É a Missa?</h1>
+    </header>
+    <main>
+        <section>
+            <input type="text" placeholder="Digite o nome do seu bairro" id="campo-pesquisa">
+            <button onclick="buscarParoquias()">Pesquisar</button>
+        </section>
+        <div class="resultados-pesquisa" id="paroquiasContainer">
+        </div>
+    </main>
+    <footer>
+        <p>2024 - Pedro Gomes Jr. Todos os direitos reservados - Entre em contato pelo email: pedrogomesjr0@gmail.com</p>
+    </footer>
+    <script src="dados.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
