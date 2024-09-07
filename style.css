@@ -3,7 +3,7 @@
 
 /* Estiliza o corpo da página */
 body {
-    font-family: "Chakra Petch", sans-serif; /* Define a fonte padrão */
+    font-family: "Georgia"; /* Define a fonte padrão */
     background-color: #DDDDDD; /* Cor de fundo da página */
     display: flex; /* Usa Flexbox para layout */
     flex-direction: column; /* Alinha os itens na vertical */
@@ -14,7 +14,7 @@ body {
     padding: 0;
     background-image: url('imagem1.jfif');
     overflow: hidden;
-}
+    background-blend-mode: multiply;}
 
 /* Estiliza os títulos h1 */
 h1 {
@@ -22,6 +22,8 @@ h1 {
     color: #ffffff; /* Cor do texto */
     text-align: center; /* Alinha o texto ao centro */
     letter-spacing: 0.4rem; /* Espaçamento entre letras */
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    opacity: 1; 
 }
 
 /* Estiliza as seções da página */
@@ -77,9 +79,10 @@ section button {
 }
 
 /* Estiliza os títulos dentro dos itens de resultado */
-.item-resultado h2 {
+h4 {
     font-size: 1.5rem; /* Tamanho da fonte */
-    color: #222831; /* Cor do texto */
+    color: #f2f3f5; /* Cor do texto */
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Estiliza os links dentro dos itens de resultado */
@@ -114,7 +117,7 @@ footer {
 
 .card {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
     grid-template-rows: 210px 340px 60px;
     grid-template-areas: "image" "text" "stats";
   
@@ -141,7 +144,7 @@ footer {
     background-image: url("img1.jpg");
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    background-size: cover;
+    object-fit: scale-down;
   }
   .card-text {
     grid-area: text;
@@ -159,8 +162,11 @@ footer {
     text-decoration: none; /* Remove o sublinhado padrão dos links */
   }
   .card-text h2 {
+    text-align: left;
+    font-size: 1.5rem; /* Tamanho da fonte */
     margin-top:0px;
     font-size:28px;
+    color: #222831; /* Cor do texto */
   }
   .card-text a {
     text-align: left;
@@ -169,14 +175,13 @@ footer {
     color: #30475E; /* Cor do texto dos links */
   }
 
-.card-text h2 {
-    text-align: left;
-    font-size: 1.5rem; /* Tamanho da fonte */
-    color: #222831; /* Cor do texto */
+.card-stats h3 {
+    text-align: center;
+    font-size: 1fr; /* Tamanho da fonte */
+    color: #ffffff; /* Cor do texto */
 }
 .card-text ul {
    text-align: left;
-   font-size: 1.5rem; /* Tamanho da fonte */
    color: #222831; /* Cor do texto */
 }
   .card-stats {
@@ -185,7 +190,7 @@ footer {
   
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    background: rgb(230, 255, 7);
+    background: #30475E;
   }
 
   .card-stats .stat {
@@ -201,3 +206,14 @@ footer {
     transform: scale(1.15);
     box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
   }
+
+  .grid-mais-informacoes {
+    grid-area: stats; 
+    display: grid;
+    grid-template-columns: 1fr 10px 1fr;
+    grid-template-rows: 1fr;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  

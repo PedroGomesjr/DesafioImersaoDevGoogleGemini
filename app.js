@@ -1,3 +1,4 @@
+//import { gemini } from './gemini';
 // Função para obter a próxima missa com base no horário atual
 function getProximaMissa(diaHorario) {
     const agora = new Date();
@@ -17,6 +18,7 @@ function getProximaMissa(diaHorario) {
     return { dia: 'Nenhum dia', horario: 'Nenhuma missa encontrada' };
 }
 
+
 // Função para buscar paróquias pelo nome do bairro
 function buscarParoquias() {
     const bairroInput = document.getElementById('campo-pesquisa').value.trim().toLowerCase();
@@ -24,8 +26,8 @@ function buscarParoquias() {
 
     // se campoPesquisa for uma string sem nada
     if (!bairroInput) {
-        container.innerHTML = "<p>Nada foi encontrado. Você precisa digitar o nome do bairro</p>"
-        return 
+        container.innerHTML = "<h4>Nada foi encontrado. Você precisa digitar o nome do bairro</h4>"
+        return
     }
     container.innerHTML = ''; // Limpa o conteúdo anterior
     // Obtém o elemento body
@@ -37,38 +39,54 @@ function buscarParoquias() {
     const bairro = barriosMissas.find(barriosMissas => barriosMissas.bairro.toLowerCase() === bairroInput);
     if (bairro) {
         const paroquiasOrdenadas = bairro.paroquias.sort((a, b) => {
-            const proximaMissaA  = getProximaMissa(a.diaHorario);
-            const proximaMissaB  = getProximaMissa(b.diaHorario);
+            const proximaMissaA = getProximaMissa(a.diaHorario);
+            const proximaMissaB = getProximaMissa(b.diaHorario);
             return new Date(`1970-01-01T${proximaMissaA}:00Z`) - new Date(`1970-01-01T${proximaMissaB}:00Z`);
         });
 
         paroquiasOrdenadas.forEach(paroquia => {
             const proximaMissa = getProximaMissa(paroquia.diaHorario);
+            //const gemini = new Gemini();
+            //const resultado = gemini.maisinformacosGemini(paroquia.paroquia);
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
                 <div class="card-image">
-                 <img src=${paroquia.imagem} alt="Paróquia Image" />
+                    <img src=${paroquia.imagem} alt="Paróquia Image" width="auto" height="90%" />
                 </div>
-                <div class= "card-text">
+                <div class="card-text">
                     <h2>${paroquia.paroquia}</h2>
-                    <p>${paroquia.descricao}</p>
+                    <!--<p>"${paroquia.descricao}"</p>-->
                     <h2><strong>Horários de Missa:</strong></h2>
                     <ul>
                         ${Object.entries(paroquia.diaHorario).map(([dia, horarios]) => `
-                            <li><strong>${dia}:</strong> ${horarios.join(', ')}</li>
+                        <li  font-size: "1.5rem"><strong>${dia}:</strong> ${horarios.join(', ')}</li>
                         `).join('')}
                     </ul>
-                    <a href="${paroquia.link}" target="_blank">Site da Paróquia</a><br>
-                    <a href="${paroquia.rotaGoogleMaps}" target="_blank">Rota no Google Maps</a>
+                    <div class="grid-mais-informacoes">
+                        <!--<button class="btn-more">Mais informações</button>-->
+                        <a href="${paroquia.link}" target="_blank">Site da Paróquia</a><br>
+                        <a href="${paroquia.rotaGoogleMaps}" target="_blank">Rota no Google Maps</a>
+                    </div>
                 </div>
                 <div class="card-stats">
-                <h2><strong>Próxima missa:</strong> ${proximaMissa.dia} às ${proximaMissa.horario}</h2>
+                    <h3><strong>Próxima missa:</strong> ${proximaMissa.dia} às ${proximaMissa.horario}</h3>
+                </div>
+                <!--<div class="card-back">
+                    <p>resultado</p>
+                </div>-->
                 </div>
             `;
             container.appendChild(card);
+
+            //const efeito = document.querySelector('.card');
+            //const btnMore = document.querySelector('.btn-more');
+
+            //btnMore.addEventListener('click', () => {
+            //    efeito.classList.toggle('flipped');
+            //});
         });
     } else {
-        container.innerHTML = '<p>Bairro não encontrado.</p>';
+        container.innerHTML = '<h4>Bairro não encontrado.<br> Ainda estmos em processo de contrução do nosso site e da nossa base de dados. <br>Em breve os horários de Santa Missa das Paróquias do bairro que pesquisou estarão disponivel</h4>';
     }
 }
